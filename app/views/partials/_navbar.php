@@ -81,12 +81,12 @@ among researchers, academics, and students.">
           </div>
         </div>
         <a class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md hover:bg-opacity-75 mr-4" href="/researchhub_project/app/views/auth/logout.php">logout</a>
-        <a class="h-10 text-center" href="/user6c4298f0"><img class="h-10 w-10 rounded-full object-cover scale-110 lg:mr-2 hover:ring hover:ring-purple-700" src="https://lh3.googleusercontent.com/a/ACg8ocKCAYmMcwVhDp7ZrneUw-H0m-pftFUMeA6a7fvw0j5WSDiaRtIh=s96-c" alt="user6c4298f0"></a>
+        <a class="h-10 text-center" href="/researchhub_project/app/views/profile/userProfile.php"><img class="h-10 w-10 rounded-full object-cover scale-110 lg:mr-2 hover:ring hover:ring-purple-700" src="https://lh3.googleusercontent.com/a/ACg8ocKCAYmMcwVhDp7ZrneUw-H0m-pftFUMeA6a7fvw0j5WSDiaRtIh=s96-c" alt="user profile"></a>
       </div>
       <?php endif; ?>
     </nav>
     <?php if ($isLoggedIn): ?>
-    <a class="block bg-purple-600 text-white text-center font-medium p-3 transition hover:opacity-90" href="/researchhub_project/app/views/profile/editprofile.php">Welcome 🤗 You can change your profile information here<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="inline-block w-4 h-4 ml-2">
+    <a class="block bg-purple-600 text-white text-center font-medium p-3 transition hover:opacity-90" href="/researchhub_project/app/views/profile/editProfile.php">Welcome 🤗 You can change your profile information here<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="inline-block w-4 h-4 ml-2">
         <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"></path>
       </svg></a>
     <?php endif; ?>

@@ -13,7 +13,7 @@ include './app/views/partials/_navbar.php';
 ?>
 
 
-<section class="relative text-black py-28">
+<section class="relative text-black py-28 bg-[#181028]">
 
   <div class="flex items-center justify-between gap-10 container mx-auto bg-gradient-to-r from-[#0e0a1f] via-[#2a1a4d] to-[#0e0a1f] p-8 rounded-lg shadow-lg">
     <!-- Text Section -->
