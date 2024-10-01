@@ -1,4 +1,17 @@
-<?php include '../partials/_navbar.php' ?>
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['user'])) {
+    header('Location: ../app.php');
+    exit();
+}
+
+include '../partials/_navbar.php'
+
+?>
 
 <section class="my-32 max-w-lg mx-auto bg-[#111111] rounded-lg p-8 border border-[#333333] shadow-lg">
     <h2 class="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
@@ -37,4 +50,4 @@
 
     </form>
 
-<?php include '../partials/_footer.php' ?>
+    <?php include '../partials/_footer.php' ?>

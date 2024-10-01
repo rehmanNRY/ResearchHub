@@ -1,4 +1,17 @@
-<?php include '../partials/_navbar.php' ?>
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['user'])) {
+    header('Location: ../app.php');
+    exit();
+}
+
+include '../partials/_navbar.php'
+
+?>
 
 <section class="py-32 flex justify-center items-center bg-[#131214]">
   <div class="w-full max-w-md bg-[#111111] rounded-lg p-8 border border-[#333333] shadow-lg">

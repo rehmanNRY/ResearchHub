@@ -1,11 +1,11 @@
 </main>
-<footer class="bg-gray-900 pb-14 pt-20 text-gray-300">
+<footer class="bg-[#181028] pb-14 pt-20 text-gray-300">
   <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
     <!-- Logo and About Section -->
     <div>
       <a href="#" class="flex items-center mb-4">
         <img src="https://lobehub.com/_next/static/media/logo.98482105.png" alt="Logo" class="w-10 h-10 mr-2">
-        <span class="text-white text-2xl font-semibold">YourSite</span>
+        <span class="text-white text-2xl font-semibold">ResearchHub</span>
       </a>
       <p class="text-gray-400 text-sm">Empowering creators and innovators with the latest AI tools and insights.</p>
     </div>

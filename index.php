@@ -1,8 +1,21 @@
-<?php include './app/views/partials/_navbar.php' ?>
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+if (isset($_SESSION['user'])) {
+    header('Location: ./app/views/app.php');
+    exit();
+}
+
+include './app/views/partials/_navbar.php';
+
+?>
+
 
 <section class="relative text-black py-28">
-  <div class="flex items-center justify-between gap-10 container mx-auto bg-gradient-to-r from-[#2e1a47] via-[#5e4b8a] to-[#2e1a47]
- p-8 rounded-lg shadow-lg">
+
+  <div class="flex items-center justify-between gap-10 container mx-auto bg-gradient-to-r from-[#0e0a1f] via-[#2a1a4d] to-[#0e0a1f] p-8 rounded-lg shadow-lg">
     <!-- Text Section -->
     <div class="w-1/2 space-y-6">
       <h1 class="font-bold text-5xl leading-snug text-white">Unleashing Individual Potential: <span class="text-yellow-400">From Tools to Partners</span></h1>
@@ -28,7 +41,7 @@
 <!-- Services Section -->
 <section id="services" class="py-20 bg-white text-center">
   <div class="container mx-auto text-center mb-10">
-    <h2 class="text-4xl font-bold text-purple-950">Our Services</h2>
+    <h2 class="text-5xl font-extrabold text-purple-950">Our Services</h2>
     <p class="text-lg text-gray-600 mt-4">Explore the wide range of features ResearchHub offers to support your academic endeavors.</p>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 container mx-auto">

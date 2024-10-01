@@ -17,7 +17,7 @@ if (isset($_POST['signup'])) {
     
     if ($signupResult === true) {
         // Signup successful, redirect to index
-        header('Location: ../../index.php');
+        header('Location: ../views/app.php');
         exit();
     } else {
         // Display error message
@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     if ($user->login($username, $password)) {
-        header('Location: ../../index.php');
+        header('Location: ../views/app.php');
     } else {
         echo "Invalid credentials.";
         header('Location: /researchhub_project/app/views/auth/login.php');
