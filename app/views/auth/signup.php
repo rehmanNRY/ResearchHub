@@ -17,7 +17,7 @@ include '../partials/_navbar.php'
     <h2 class="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
 
     <!-- Form Starts Here -->
-    <form action="../../controllers/main.php" method="POST">
+    <form action="../../controllers/Auth.php" method="POST">
 
         <!-- Full Name Field -->
         <div class="mb-6">

@@ -1,11 +1,11 @@
-<?php 
+<?php
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
 if (!isset($_SESSION['user'])) {
-    header('Location: ../../../index.php');
-    exit();
+  header('Location: ../../../index.php');
+  exit();
 }
 
 include '../partials/_navbar.php';
@@ -21,7 +21,7 @@ include '../partials/_navbar.php';
         <img class="w-32 h-32 rounded-full border-4 border-purple-700" src="https://via.placeholder.com/150" alt="Profile Picture">
         <label for="profilePic" class="absolute bottom-0 right-0 bg-purple-700 hover:bg-purple-600 cursor-pointer p-2 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M4 5a2 2 0 012-2h8a2 2 0 012 2v3h-1V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h3v1H6a2 2 0 01-2-2V5zm12 8a2 2 0 10-4 0 2 2 0 004 0zm1 0a3 3 0 11-6 0 3 3 0 016 0zm-3-4a1 1 0 00-1 1v4a1 1 0 001 1h1.5a.5.5 0 000-1H14v-4a1 1 0 00-1-1z"/>
+            <path d="M4 5a2 2 0 012-2h8a2 2 0 012 2v3h-1V5a1 1 0 00-1-1H6a1 1 0 00-1 1v10a1 1 0 001 1h3v1H6a2 2 0 01-2-2V5zm12 8a2 2 0 10-4 0 2 2 0 004 0zm1 0a3 3 0 11-6 0 3 3 0 016 0zm-3-4a1 1 0 00-1 1v4a1 1 0 001 1h1.5a.5.5 0 000-1H14v-4a1 1 0 00-1-1z" />
           </svg>
         </label>
         <input type="file" id="profilePic" class="hidden">
@@ -39,13 +39,16 @@ include '../partials/_navbar.php';
       <button id="editBioBtn" class="mt-3 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500">Edit Bio</button>
 
       <!-- Bio Edit Form -->
-      <div id="bioForm" class="hidden mt-4">
-        <textarea id="bioInput" rows="4" class="w-full p-3 border border-purple-600 rounded-md bg-purple-900 text-white" placeholder="Tell us about yourself..."></textarea>
+      <form action="../../controllers/ProfileController.php" method="POST" id="bioForm" class="hidden mt-4">
+        <textarea id="bioInput" name="bio" rows="4" class="w-full p-3 border border-purple-600 rounded-md bg-purple-900 text-white" placeholder="Tell us about yourself..."></textarea>
         <div class="flex justify-end space-x-4 mt-3">
-          <button id="saveBioBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
-          <button id="cancelBioBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">Cancel</button>
+          <button type="submit" name="updateBio" id="saveBioBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
+          <button id="cancelBioBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500" type="button">Cancel</button>
         </div>
-      </div>
+      </form>
+
+
+
     </div>
 
     <!-- Affiliations Section -->
@@ -78,20 +81,32 @@ include '../partials/_navbar.php';
           <button id="addAffiliationBtn" class="px-4 py-2 bg-green-600 rounded-lg text-white hover:bg-green-500">Add New Affiliation</button>
         </div>
 
-        <!-- Add/Edit Affiliation Form -->
-        <div id="affiliationForm" class="hidden mt-4">
-          <input type="text" placeholder="Institution Name" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
-          <input type="text" placeholder="Department" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
-          <input type="text" placeholder="Position" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
+        <!-- 
+        <input type="text" placeholder="Institution Name" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
+        <input type="text" placeholder="Department" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
+        <input type="text" placeholder="Position" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
+        <div class="flex space-x-2">
+          <input type="date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
+          <input type="date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
+        </div> -->
+
+
+        <form action="../../controllers/ProfileController.php" method="POST" id="affiliationForm" class="hidden mt-4">
+          <input type="text" name="institution_name" placeholder="Institution Name" class="mb-2 p-2 border border-purple-600 rounded-md  bg-purple-900 text-white w-full">
+          <input type="text" name="department" placeholder="Department" class="mb-2 p-2 border border-purple-600 rounded-md  bg-purple-900 text-white w-full">
+          <input type="text" name="position" placeholder="Position" class="mb-2 p-2 border border-purple-600 rounded-md  bg-purple-900 text-white w-full">
           <div class="flex space-x-2">
-            <input type="date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
-            <input type="date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
+            <input type="date" name="start_date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
+            <input type="date" name="end_date" class="p-2 border border-purple-600 rounded-md bg-purple-900 text-white">
           </div>
           <div class="flex justify-end space-x-4 mt-3">
-            <button id="saveAffiliationBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
-            <button id="cancelAffiliationBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">Cancel</button>
+            <button type="submit" name="addAffiliation" id="saveAffiliationBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
+            <button id="cancelAffiliationBtn" type="button" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">Cancel</button>
           </div>
-        </div>
+        </form>
+
+
+
       </div>
     </div>
 
@@ -133,13 +148,17 @@ include '../partials/_navbar.php';
         <div class="mt-4">
           <button id="addInterestBtn" class="px-4 py-2 bg-green-600 rounded-lg text-white hover:bg-green-500">Add New Interest</button>
         </div>
-        <div id="interestForm" class="hidden mt-4">
-          <input type="text" placeholder="New Interest" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
+
+
+
+        <form id="interestForm" class="hidden mt-4" action="../../controllers/ProfileController.php" method="POST">
+          <input type="text" name="interest" placeholder="New Interest" class="mb-2 p-2 border border-purple-600 rounded-md bg-purple-900 text-white w-full">
           <div class="flex justify-end space-x-4 mt-1">
-            <button id="saveInterestBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
-            <button id="cancelInterestBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">Cancel</button>
+            <button type="submit" name="addInterest" id="saveInterestBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500">Save</button>
+            <button id="cancelInterestBtn" type="button" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">Cancel</button>
           </div>
-        </div>
+        </form>
+
       </div>
     </div>
 

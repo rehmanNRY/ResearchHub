@@ -13,11 +13,11 @@ include './app/views/partials/_navbar.php';
 ?>
 
 
-<section class="relative text-black py-28 bg-[#181028]">
+<section class="relative text-black py-32 bg-[#181028]">
 
-  <div class="flex items-center justify-between gap-10 container mx-auto bg-gradient-to-r from-[#0e0a1f] via-[#2a1a4d] to-[#0e0a1f] p-8 rounded-lg shadow-lg">
+  <div class="flex items-center flex-col md:flex-row justify-between gap-10 container mx-auto bg-gradient-to-r from-[#0e0a1f] via-[#2a1a4d] to-[#0e0a1f] md:px-10 px-5 md:py-24 py-4 rounded-lg shadow-lg">
     <!-- Text Section -->
-    <div class="w-1/2 space-y-6">
+    <div class="md:w-1/2 w-full space-y-6">
       <h1 class="font-bold text-5xl leading-snug text-white">Unleashing Individual Potential: <span class="text-yellow-400">From Tools to Partners</span></h1>
       <p class="mt-5 text-gray-400 text-lg">Discover how AI can enhance your creative ventures and career with powerful tools built to unlock human potential.</p>
 
@@ -31,7 +31,7 @@ include './app/views/partials/_navbar.php';
     </div>
 
     <!-- Image Section -->
-    <div class="w-1/2 flex justify-center relative">
+    <div class="md:w-1/2 w-full flex justify-center relative">
       <img src="https://hub-apac-1.lobeobjects.space/landing/overview/f4.webp" class="w-full rounded-lg object-cover shadow-lg transform hover:scale-105 transition duration-500" alt="AI Blog">
       <div class="absolute -bottom-5 left-5 bg-yellow-400 text-black px-3 py-1 rounded-lg shadow-md">#AIRevolution</div>
     </div>

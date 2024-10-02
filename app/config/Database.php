@@ -21,4 +21,9 @@ class Database {
     public function escape_string($value) {
         return $this->conn->real_escape_string($value);
     }
+
+    // Add prepare method to handle prepared statements
+    public function prepare($sql) {
+        return $this->conn->prepare($sql);
+    }
 }

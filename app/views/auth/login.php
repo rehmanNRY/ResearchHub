@@ -18,7 +18,7 @@ include '../partials/_navbar.php'
     <h2 class="text-3xl font-bold text-center text-white mb-6">Login</h2>
 
     <!-- Login Form -->
-    <form  action="../../controllers/main.php" method="POST">
+    <form  action="../../controllers/Auth.php" method="POST">
       
       <!-- Username Field -->
       <div class="mb-6">
