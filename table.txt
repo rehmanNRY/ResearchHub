@@ -1,0 +1,32 @@
+1. users Table
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(32) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    profile_picture VARCHAR(255),
+    bio TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+2. affiliations Table
+CREATE TABLE affiliations (
+    affiliation_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    institution_name VARCHAR(255) NOT NULL,
+    department VARCHAR(255),
+    position VARCHAR(255),
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+3. research_interests Table
+CREATE TABLE research_interests (
+    interest_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    interest VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);

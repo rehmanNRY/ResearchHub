@@ -63,4 +63,20 @@ class Profile {
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+    // Get User details
+    public function getUserDetail($user_id) {
+        $query = "SELECT * FROM users WHERE user_id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $user_id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateProfilePic($user_id, $fileName) {
+      $query = "UPDATE users SET profile_picture = ? WHERE user_id = ?";
+      $stmt = $this->db->prepare($query);
+      $stmt->bind_param('si', $fileName, $user_id);
+      return $stmt->execute();
+    }
 }

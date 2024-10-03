@@ -1,9 +1,9 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
-require_once '../config/Database.php';
-require_once '../models/Profile.php';
+require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../models/Profile.php';
 
 $db = new Database();
 $profile = new Profile($db);
@@ -16,23 +16,44 @@ if (!isset($_SESSION['user'])) {
 
 $user_id = $_SESSION['user']['user_id'];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_FILES['profilePic']) && $_FILES['profilePic']['error'] === 0) {
+        $file = $_FILES['profilePic'];
+        $uploadDirectory = __DIR__ . '/../../public/uploads/profile_pics/';  // Absolute path of the "uploads" folder
 
+        // Make sure the uploads directory exists, create it if not
+        if (!is_dir($uploadDirectory)) {
+            mkdir($uploadDirectory, 0777, true);
+        }
 
-// Fetch User Bio (assuming bio is stored in the users table)
-$userQuery = "SELECT bio FROM users WHERE user_id = ?";
-$stmt = $db->prepare($userQuery);
-$stmt->bind_param('i', $user_id);
-$stmt->execute();
-$userResult = $stmt->get_result();
-$userData = $userResult->fetch_assoc();
-$bio = $userData['bio'] ?? '';
+        // Get file details
+        $fileName = basename($file['name']); // Get the original file name
+        $fileTmpPath = $file['tmp_name']; // Temporary uploaded file
+        $fileSize = $file['size']; // Size of the uploaded file
+        $fileError = $file['error']; // Any upload error
+        $targetPath = $uploadDirectory . $fileName;  // Full path to move the file
 
-// Fetch Affiliations
-$affiliations = $profile->getAffiliations($user_id);
-
-// Fetch Interests
-$interests = $profile->getInterests($user_id);
-
+        // Check if the file was uploaded without errors
+        if ($fileError === 0) {
+            if (move_uploaded_file($fileTmpPath, $targetPath)) {
+                // Save the file path in the database
+                if ($profile->updateProfilePic($user_id, $fileName)) {
+                    $_SESSION['success'] = "Profile picture updated successfully!";
+                } else {
+                    $_SESSION['error'] = "Error updating profile picture in database!";
+                }
+                header('Location: ../views/profile/editProfile.php');
+                exit();
+            } else {
+                echo 'Failed to upload file. Could not move file.';
+            }
+        } else {
+            echo 'File upload error: ' . $fileError;
+        }
+    } else {
+        echo 'No file uploaded or file upload error.';
+    }
+}
 
 
 // Handle Bio Update

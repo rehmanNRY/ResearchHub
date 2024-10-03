@@ -55,10 +55,8 @@ among researchers, academics, and students.">
       <div class="absolute top-14 right-2 bg-[#2C2446] z-50 w-44 shadow-[2px_5px_10px_#18102866] rounded-xl px-2 py-4 flex flex-col-reverse items-center origin-top-right transition lg:shadow-none lg:static lg:w-auto lg:p-0 lg:flex-row lg:scale-100 scale-0" id="navbar-menu">
         <ul class="flex flex-col gap-3 items-center mt-4 lg:flex-row lg:gap-2 mr-2 lg:mt-0">
           <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/modes">Modes</a></li>
-          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/courses">Courses</a></li>
-          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/blog">Blog</a></li>
-          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/leaderboard">Leaderboard</a></li>
-          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/roadmap">Roadmap</a></li>
+          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/resource/resourceDiscovery.php">Resource Discovery</a></li>
+          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/resource/uploadResource.php">Upload Resource</a></li>
         </ul>
       <?php if (!$isLoggedIn): ?>
         <a class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md hover:bg-opacity-75" href="/researchhub_project/app/views/auth/login.php">Login</a>
