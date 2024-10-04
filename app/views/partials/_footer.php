@@ -1,5 +1,5 @@
 </main>
-<footer class="bg-[#181028] pb-14 pt-20 text-gray-300">
+<footer class="bg-[#0e0c15e6] pb-14 pt-20 text-gray-300 border-t border-[#251325FF]">
   <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
     <!-- Logo and About Section -->
     <div>

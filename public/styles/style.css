@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 12 21 / var(--tw-bg-opacity));
+  font-family: var(--font-sora), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  font-family: "Sora", system-ui !important;
+}
+.sc-font {
+  font-family: "Source Code Pro", monospace !important;
+}
+
+.text-n-2 {
+  --tw-text-opacity: 1;
+  color: rgb(202 198 221 / var(--tw-text-opacity));
+}
+.bg-conic-gradient {
+  background-image: conic-gradient(from 225deg, #ffc876, #79fff7, #9f53ff, #ff98e2, #ffc876);
+}
+.bg-n-9\/40 {
+  background-color: #47406066;
+}
+.text-n-3 {
+  --tw-text-opacity: 1;
+  color: rgb(173 168 195 / var(--tw-text-opacity));
+}
+.bg-radial-gradient {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+.bg-n-6 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 33 52 / var(--tw-bg-opacity));
+}
+.bg-n-7 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 19 29 / var(--tw-bg-opacity));
+}
+.bg-n-8 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 12 21 / var(--tw-bg-opacity));
+}
+.bg-n-10 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 67 92 / var(--tw-bg-opacity));
+}
+.fill-gray{
+  fill: rgb(37 33 52 / var(--tw-bg-opacity));
+}
