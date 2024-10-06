@@ -30,8 +30,8 @@ among researchers, academics, and students.">
 
 <body>
 
-  <div class="fixed top-0 left-0 w-full z-50  border-b border-[#251325FF] bg-[#0e0c15e6] backdrop-blur-sm py-2">
-    <nav class="relative flex items-center justify-between gap-2 p-4 font-medium container mx-auto lg:px-2 lg:py-2.5"><a class="mt-1 items-center flex text-base font-bold transition-transform hover:scale-110" href="/researchhub_project/index.php"><img src="https://lobehub.com/_next/static/media/logo.98482105.png" class="w-10 mr-2" alt=""><span class="text-white font-bold text-2xl">ResearchHub</span></a>
+  <div class="fixed top-0 left-0 w-full z-50 bg-[#0e0c15e6] backdrop-blur-sm">
+    <nav class="border-b border-[#251325FF] relative flex items-center justify-between gap-2 font-medium container mx-auto px-2 py-4"><a class="mt-1 items-center flex text-base font-bold transition-transform hover:scale-110" href="/researchhub_project/index.php"><img src="https://lobehub.com/_next/static/media/logo.98482105.png" class="w-10 mr-2" alt=""><span class="text-white font-bold text-2xl">ResearchHub</span></a>
       <div class="block ml-auto mb-2 lg:hidden">
         <div class="relative lg:mr-2"><button class="bg-purple-800 text-white flex items-center justify-center w-10 h-10 rounded-full relative mt-2 lg:mt-0 hover:opacity-75"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -84,7 +84,7 @@ among researchers, academics, and students.">
       <?php endif; ?>
     </nav>
     <?php if ($isLoggedIn): ?>
-    <a class="block bg-n-6 text-white text-center font-medium p-3 transition hover:opacity-90" href="/researchhub_project/app/views/profile/editProfile.php">Welcome 🤗 You can change your profile information here<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="inline-block w-4 h-4 ml-2">
+    <a class="block bg-n-6 text-white text-center font-medium p-3.5 transition hover:opacity-90" href="/researchhub_project/app/views/profile/editProfile.php">Welcome 🤗 You can change your profile information here<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="inline-block w-4 h-4 ml-2">
         <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"></path>
       </svg></a>
     <?php endif; ?>

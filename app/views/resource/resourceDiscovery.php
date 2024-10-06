@@ -12,8 +12,8 @@ include '../partials/_navbar.php';
 
 ?>
 
-<section class="min-h-screen bg-gray-900 text-gray-200 font-sans py-12">
-  <div class="container mx-auto px-6 lg:px-12">
+<section class="min-h-screen text-gray-200 font-sans py-20">
+  <div class="container mx-auto px-4">
     <!-- Page Header -->
     <div class="bg-gradient-to-r from-purple-700 to-purple-900 text-white p-8 rounded-lg shadow-xl flex justify-between items-center mb-12">
       <h1 class="text-4xl font-bold">Resource Discovery</h1>
@@ -23,8 +23,8 @@ include '../partials/_navbar.php';
     <!-- Search Bar -->
     <div class="mb-8">
       <div class="flex items-center bg-purple-800 p-4 rounded-lg shadow-lg">
-        <input type="text" class="bg-gray-800 text-white w-full px-4 py-2 rounded-lg outline-none" placeholder="Search for research papers, datasets, or articles...">
-        <button class="ml-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md">Search</button>
+        <input type="text" id="search" class="bg-gray-800 text-white w-full px-4 py-2 rounded-lg outline-none" placeholder="Search for research papers, datasets, or articles...">
+        <button id="searchBtn" class="ml-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md">Search</button>
       </div>
     </div>
 
@@ -62,72 +62,118 @@ include '../partials/_navbar.php';
       </div>
       <!-- Apply Filters Button -->
       <div class="mt-6 text-right">
-        <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md">Apply Filters</button>
+        <button id="applyFilters" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg shadow-md">Apply Filters</button>
       </div>
     </div>
+
 
     <!-- Resource Results -->
-    <div class="space-y-6">
-      <!-- Single Resource Card -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl hover:shadow-2xl">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold text-white">Deep Learning for Image Classification</h3>
-          <div class="flex items-center space-x-2">
-            <span class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-100">120</span></span>
-            <button class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md">Download</button>
-          </div>
-        </div>
-        <p class="text-purple-300 mb-4">This research paper explores advanced deep learning techniques for image classification. We propose new models and training methods...</p>
-        <div class="flex items-center space-x-4 text-sm text-purple-400">
-          <div>Author: <span class="font-semibold text-purple-200">Jane Doe</span></div>
-          <div>Published: <span class="font-semibold text-purple-200">2023-05-15</span></div>
-          <div>Category: <span class="font-semibold text-purple-200">Machine Learning</span></div>
-        </div>
-      </div>
-
-      <!-- Second Resource Card -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl hover:shadow-2xl">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold text-white">Ethical Considerations in AI</h3>
-          <div class="flex items-center space-x-2">
-            <span class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-100">86</span></span>
-            <button class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md">Download</button>
-          </div>
-        </div>
-        <p class="text-purple-300 mb-4">This article delves into the ethical challenges posed by the rapid development of AI technologies and their application in various fields...</p>
-        <div class="flex items-center space-x-4 text-sm text-purple-400">
-          <div>Author: <span class="font-semibold text-purple-200">John Smith</span></div>
-          <div>Published: <span class="font-semibold text-purple-200">2022-11-08</span></div>
-          <div>Category: <span class="font-semibold text-purple-200">Ethics in AI</span></div>
-        </div>
-      </div>
-
-      <!-- Third Resource Card -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl hover:shadow-2xl">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold text-white">AI in Healthcare: A Review</h3>
-          <div class="flex items-center space-x-2">
-            <span class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-100">65</span></span>
-            <button class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md">Download</button>
-          </div>
-        </div>
-        <p class="text-purple-300 mb-4">A comprehensive review of how artificial intelligence is being used in healthcare, from diagnostics to treatment and beyond...</p>
-        <div class="flex items-center space-x-4 text-sm text-purple-400">
-          <div>Author: <span class="font-semibold text-purple-200">Emily Williams</span></div>
-          <div>Published: <span class="font-semibold text-purple-200">2021-07-22</span></div>
-          <div>Category: <span class="font-semibold text-purple-200">Healthcare</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="space-y-6 resources-container"></div>
 
     <!-- Pagination -->
-    <div class="mt-12 flex justify-center">
-      <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 shadow-md">Previous</button>
-      <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 shadow-md mx-4">1</button>
-      <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 shadow-md">Next</button>
+    <div class="mt-12 flex justify-center pagination-buttons gap-3">
+      <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 shadow-md pagination-previous">Previous</button>
+      <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500 shadow-md pagination-next">Next</button>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const resourcesContainer = document.querySelector('.resources-container');
+    const searchInput = document.getElementById('search');
+    const searchBtn = document.getElementById('searchBtn');
+    const categorySelect = document.getElementById('category');
+    const authorInput = document.getElementById('author');
+    const dateInput = document.getElementById('date');
+    const citationsInput = document.getElementById('citations');
+    const applyFiltersBtn = document.getElementById('applyFilters');
+
+    let currentPage = 1;
+
+    // Function to fetch resources based on filters
+    async function fetchResources(page = 1) {
+      const searchTerm = searchInput.value.trim();
+      const category = categorySelect.value;
+      const author = authorInput.value.trim();
+      const date = dateInput.value;
+      const citations = citationsInput.value;
+
+      try {
+        const response = await fetch(`/researchhub_project/app/controllers/getResources.php?page=${page}&search=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}&author=${encodeURIComponent(author)}&date=${encodeURIComponent(date)}&citations=${encodeURIComponent(citations)}`);
+        const data = await response.json();
+        displayResources(data);
+      } catch (error) {
+        console.error("Error fetching resources:", error);
+      }
+    }
+
+    // Display resources on the page
+    function displayResources(resources) {
+      resourcesContainer.innerHTML = ''; // Clear previous resources
+
+      if (resources.length === 0) {
+        resourcesContainer.innerHTML = '<p>No resources found.</p>';
+        return;
+      }
+
+      resources.forEach(resource => {
+        const resourceCard = `
+        <div class="bg-purple-800 p-6 rounded-lg shadow-xl hover:shadow-2xl">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold text-white">${resource.title}</h3>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-100">${resource.citations}</span></span>
+              <a href="/researchhub_project/public/uploads/resources/${resource.file_path}" class="download-button bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md">Download</a>
+            </div>
+          </div>
+          <p class="text-purple-300 mb-4">${resource.description}</p>
+          <div class="flex items-center space-x-4 text-sm text-purple-400">
+            <div>Author: <span class="font-semibold text-purple-200">${resource.full_name}</span></div>
+            <div>Uploaded: <span class="font-semibold text-purple-200">${resource.uploaded_at}</span></div>
+            <div>Category: <span class="font-semibold text-purple-200">${resource.category}</span></div>
+          </div>
+        </div>
+      `;
+        resourcesContainer.innerHTML += resourceCard;
+      });
+    }
+
+
+    // Event listeners for search and filter
+    searchBtn.addEventListener('click', () => {
+      currentPage = 1; // Reset to first page on new search
+      fetchResources(currentPage);
+    });
+
+    applyFiltersBtn.addEventListener('click', () => {
+      currentPage = 1; // Reset to first page on filter apply
+      fetchResources(currentPage);
+    });
+
+    // Handle pagination (previous and next buttons)
+    function handlePagination() {
+      const previousButton = document.querySelector('.pagination-previous');
+      const nextButton = document.querySelector('.pagination-next');
+
+      previousButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          fetchResources(currentPage);
+        }
+      });
+
+      nextButton.addEventListener('click', () => {
+        currentPage++;
+        fetchResources(currentPage);
+      });
+    }
+
+    // Initial fetch and setup pagination
+    fetchResources(currentPage);
+    handlePagination();
+  });
+</script>
 
 
 <?php include '../partials/_footer.php' ?>

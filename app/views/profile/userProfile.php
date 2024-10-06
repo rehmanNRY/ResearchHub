@@ -11,6 +11,107 @@ if (!isset($_SESSION['user'])) {
 include '../partials/_navbar.php';
 
 ?>
+
+<div class="relative container mx-auto mb-12 lg:mb-20 md:px-20 px-4">
+  <div class="relative z-1 flex flex-col items-start h-auto p-8 border border-[#ffffff1a] rounded-3xl overflow-hidden lg:p-20 xl:h-auto bg-gradient-to-r from-gray-950 to-gray-900">
+    <div class="relative w-full text-white">
+      <h4 class="text-3xl font-bold mb-6">Discussion Forums</h4>
+      <p class="mb-8 text-gray-400">
+        Create discussion forums where users can engage in scholarly discussions, ask questions, share insights, and collaborate on research topics.
+      </p>
+      
+      <!-- Forum Post -->
+      <div class="space-y-6">
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <h5 class="text-xl font-semibold text-purple-500">Research Collaboration on AI Models</h5>
+              <p class="text-gray-400 mt-2">Posted by Jane Doe, 2 hours ago</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="flex items-center text-gray-400 hover:text-purple-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 15l7-7 7 7" /></svg>
+                <span>Upvote</span>
+              </button>
+              <button class="flex items-center text-gray-400 hover:text-purple-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7" /></svg>
+                <span>Downvote</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-300 mt-4">
+            I'm looking for collaborators on a project focused on building AI models for healthcare. Anyone with experience in neural networks or computer vision is welcome to join the discussion.
+          </p>
+
+          <!-- Threaded Comments -->
+          <div class="mt-6 space-y-4">
+            <div class="pl-6 border-l-2 border-gray-700">
+              <p class="text-gray-400"><span class="font-semibold text-purple-500">John Doe</span> 1 hour ago</p>
+              <p class="text-gray-300">I have experience with neural networks, and I'd love to contribute. Let's discuss further!</p>
+              <!-- Nested Comment -->
+              <div class="pl-6 border-l-2 border-gray-700 mt-4">
+                <p class="text-gray-400"><span class="font-semibold text-purple-500">Jane Doe</span> 30 minutes ago</p>
+                <p class="text-gray-300">Great! I'll DM you with the project details.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reply Form -->
+          <div class="mt-6">
+            <form>
+              <textarea class="w-full bg-gray-700 p-3 text-base rounded-lg text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600" rows="3" placeholder="Add a reply..."></textarea>
+              <button class="mt-4 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-full transition-all">Reply</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Another Forum Post -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <h5 class="text-xl font-semibold text-purple-500">Best Practices for Literature Review</h5>
+              <p class="text-gray-400 mt-2">Posted by Alex Smith, 1 day ago</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="flex items-center text-gray-400 hover:text-purple-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 15l7-7 7 7" /></svg>
+                <span>Upvote</span>
+              </button>
+              <button class="flex items-center text-gray-400 hover:text-purple-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 9l-7 7-7-7" /></svg>
+                <span>Downvote</span>
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-300 mt-4">
+            I'm struggling to structure my literature review effectively. Can anyone suggest best practices or tools for organizing research papers?
+          </p>
+
+          <!-- Tag Section -->
+          <div class="mt-4">
+            <span class="text-sm text-gray-400">Tags:</span>
+            <span class="ml-2 px-3 py-1 bg-gray-700 text-purple-400 rounded-full text-xs">#research</span>
+            <span class="ml-2 px-3 py-1 bg-gray-700 text-purple-400 rounded-full text-xs">#AI</span>
+            <span class="ml-2 px-3 py-1 bg-gray-700 text-purple-400 rounded-full text-xs">#collaboration</span>
+          </div>
+
+          <!-- Reply Form -->
+          <div class="mt-6">
+            <form>
+              <textarea class="w-full bg-gray-700 p-3 text-base rounded-lg text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600" rows="3" placeholder="Add a reply..."></textarea>
+              <button class="mt-4 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-full transition-all">Reply</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <section class="min-h-screen bg-gray-900 text-gray-200 font-sans py-12">
   <div class="container mx-auto px-6 lg:px-12">
     <!-- Profile Header -->

@@ -13,41 +13,47 @@ include '../partials/_navbar.php'
 
 ?>
 
-<section class="my-32 max-w-lg mx-auto bg-[#111111] rounded-lg p-8 border border-[#333333] shadow-lg">
-    <h2 class="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
+<div class="relative container mx-auto my-12 lg:my-20 md:px-20 px-4">
+  <div class="relative z-1 flex items-center h-auto mb-5 p-8 border border-[#ffffff1a] rounded-3xl overflow-hidden lg:p-20 xl:h-auto bg-gradient-to-r from-gray-950 to-gray-900">
+    <div class="absolute top-0 right-8 w-full h-full pointer-events-none md:w-1/2 md:block hidden">
+      <img class="w-full h-full object-cover" alt="Signup Form" src="https://silver-sunshine-319abc.netlify.app/assets/service-1-bvSONSha.png">
+    </div>
 
-    <!-- Form Starts Here -->
-    <form action="../../controllers/Auth.php" method="POST">
+    <div class="relative z-1 max-w-[28rem] w-full mr-auto text-white lg:w-1/2 xl:w-3/5">
+      <h4 class="text-3xl font-bold mb-6">Sign Up</h4>
+      <form action="../../controllers/Auth.php" method="POST">
+        <div class="mb-6 text-n-3">Create an account to access the platform</div>
 
-        <!-- Full Name Field -->
-        <div class="mb-6">
-            <label for="full_name" class="block text-gray-400 text-lg font-semibold mb-2">Full Name</label>
-            <input type="text" id="full_name" name="full_name" class="w-full p-3 rounded-md bg-[#1b1b1b] border border-[#333333] text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Enter your full name" required>
+        <div class="flex flex-col mb-6">
+          <label class="text-base text-n-1 mb-2" for="fullname">Full Name</label>
+          <input class="bg-n-7 py-3 px-4 text-base text-n-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" id="fullname" type="text" placeholder="Full Name" name="full_name">
         </div>
 
-        <!-- Username Field -->
-        <div class="mb-6">
-            <label for="username" class="block text-gray-400 text-lg font-semibold mb-2">Username</label>
-            <input type="text" id="username" name="username" class="w-full p-3 rounded-md bg-[#1b1b1b] border border-[#333333] text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Enter your username" required>
+        <div class="flex flex-col mb-6">
+          <label class="text-base text-n-1 mb-2" for="username">Username</label>
+          <input class="bg-n-7 py-3 px-4 text-base text-n-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" id="username" type="text" placeholder="Username" name="username">
         </div>
 
-        <!-- Email Field -->
-        <div class="mb-6">
-            <label for="email" class="block text-gray-400 text-lg font-semibold mb-2">Email</label>
-            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-[#1b1b1b] border border-[#333333] text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Enter your email" required>
+        <div class="flex flex-col mb-6">
+          <label class="text-base text-n-1 mb-2" for="email">Email</label>
+          <input class="bg-n-7 py-3 px-4 text-base text-n-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" id="email" type="email" placeholder="Email" name="email">
         </div>
 
-        <!-- Password Field -->
-        <div class="mb-6">
-            <label for="password" class="block text-gray-400 text-lg font-semibold mb-2">Password</label>
-            <input type="password" id="password" name="password" class="w-full p-3 rounded-md bg-[#1b1b1b] border border-[#333333] text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Enter your password" required>
+        <div class="flex flex-col mb-6">
+          <label class="text-base text-n-1 mb-2" for="password">Password</label>
+          <input class="bg-n-7 py-3 px-4 text-base text-n-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" id="password" type="password" placeholder="Password" name="password">
         </div>
 
-        <!-- Submit Button -->
-        <div class="text-center">
-            <button type="submit" name="signup" class="w-full p-3 rounded-lg bg-yellow-400 text-black font-bold hover:bg-yellow-500 transition duration-300">Sign Up</button>
-        </div>
+        <button class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-full transition-all" type="submit" name="signup">Sign Up</button>
+      </form>
 
-    </form>
+      <div class="text-center mt-6">
+        <a class="text-base text-purple-500 hover:underline" href="#">Already have an account? Login</a>
+      </div>
+    </div>
+  </div>
 
-    <?php include '../partials/_footer.php' ?>
+</div>
+
+
+<?php include '../partials/_footer.php' ?>
