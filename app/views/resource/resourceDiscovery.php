@@ -100,7 +100,7 @@ include '../partials/_navbar.php';
       const citations = citationsInput.value;
 
       try {
-        const response = await fetch(`/researchhub_project/app/controllers/getResources.php?page=${page}&search=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}&author=${encodeURIComponent(author)}&date=${encodeURIComponent(date)}&citations=${encodeURIComponent(citations)}`);
+        const response = await fetch(`/researchhub_project/app/controllers/resources/getResources.php?page=${page}&search=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}&author=${encodeURIComponent(author)}&date=${encodeURIComponent(date)}&citations=${encodeURIComponent(citations)}`);
         const data = await response.json();
         displayResources(data);
       } catch (error) {
