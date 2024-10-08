@@ -8,7 +8,38 @@ if (!isset($_SESSION['user'])) {
   exit();
 }
 
+require_once '../../controllers/FollowController.php'; // Include the FollowController
+
+$loggedInUserId = $_SESSION['user']['user_id']; // The logged-in user's ID
+$viewedUserId = $_GET['user_id']; // The user profile being viewed
+
+// Initialize the FollowController
+$followController = new FollowController();
+
+// Get the details of the viewed user (you might need a UserController for this)
+$user = $_SESSION['user'];
+
+// Check if logged-in user is following this user
+$isFollowing = $followController->followModel->isFollowing($loggedInUserId, $viewedUserId);
+
+// Fetch the followers and following list of the viewed user
+$followers = $followController->showFollowers($viewedUserId);
+$following = $followController->showFollowing($viewedUserId);
+
+include '../../controllers/ProfileController.php';
+// Instantiate Profile class
+$profile = new Profile($db);
+
+// Get Affiliations and Interests
+$affiliations = $profile->getAffiliations($viewedUserId);
+$interests = $profile->getInterests($viewedUserId);
+$user_data = $profile->getUserDetail($viewedUserId);
+
+
 include '../partials/_navbar.php';
+echo var_dump($user_data);
+echo var_dump($affiliations);
+echo  var_dump($interests);
 
 ?>
 
@@ -26,74 +57,61 @@ include '../partials/_navbar.php';
           <p class="text-sm">Followers: <span class="font-semibold">300</span> | Following: <span class="font-semibold">180</span></p>
         </div>
       </div>
-      <button class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-lg shadow-md hover:from-green-600 hover:to-teal-600">Edit Profile</button>
+      <div class="flex">
+        <button class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-lg shadow-md hover:from-green-600 hover:to-teal-600">Edit Profile</button>
+        <!-- Follow/Unfollow Button (Do not show if viewing your own profile) -->
+        <?php if ($loggedInUserId != $viewedUserId): ?>
+          <div>
+            <?php if ($isFollowing): ?>
+              <form method="POST" action="unfollow.php">
+                <input type="hidden" name="follower_id" value="<?php echo $loggedInUserId; ?>">
+                <input type="hidden" name="followed_id" value="<?php echo $viewedUserId; ?>">
+                <button type="submit" class="unfollow">Unfollow</button>
+              </form>
+            <?php else: ?>
+              <form method="POST" action="follow.php">
+                <input type="hidden" name="follower_id" value="<?php echo $loggedInUserId; ?>">
+                <input type="hidden" name="followed_id" value="<?php echo $viewedUserId; ?>">
+                <button type="submit">Follow</button>
+              </form>
+            <?php endif; ?>
+          </div>
+        <?php endif; ?>
+      </div>
     </div>
 
-    <!-- Profile Overview and Research Stats -->
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Bio and Research Interests -->
-      <div class="lg:col-span-3 bg-purple-800 p-6 rounded-lg shadow-xl">
-        <h2 class="text-2xl font-bold mb-4">Bio</h2>
-        <p class="text-gray-300 mb-4">I'm a passionate researcher in the field of machine learning and data science, with a focus on building models that can process natural language effectively. Currently working on AI-based predictive analytics at XYZ University.</p>
-        <h3 class="text-xl font-semibold mb-2">Research Interests</h3>
-        <p class="text-purple-400 mb-2">Machine Learning, Data Science, Natural Language Processing, AI Ethics</p>
-      </div>
-
-      <!-- Research Contributions Stats -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl">
-        <h2 class="text-2xl font-bold mb-4">Research Stats</h2>
-        <p class="mb-2">Research Papers Uploaded: <span class="font-semibold text-purple-300">12</span></p>
-        <p class="mb-2">Citations: <span class="font-semibold text-purple-300">430</span></p>
-        <p class="mb-2">Projects Involved: <span class="font-semibold text-purple-300">5</span></p>
-        <p class="mb-2">Collaborators: <span class="font-semibold text-purple-300">50</span></p>
-        <p class="mb-2">Total Downloads: <span class="font-semibold text-purple-300">1.2k</span></p>
-      </div>
+    <div class="bg-purple-800 p-6 rounded-lg shadow-xl">
+      <h2 class="text-2xl font-bold mb-4">Bio</h2>
+      <p class="text-gray-300 mb-4">I'm a passionate researcher in the field of machine learning and data science, with a focus on building models that can process natural language effectively. Currently working on AI-based predictive analytics at XYZ University.</p>
+      <h3 class="text-xl font-semibold mb-2">Research Interests</h3>
+      <p class="text-purple-400 mb-2">Machine Learning, Data Science, Natural Language Processing, AI Ethics</p>
     </div>
-
-    <!-- Research Contributions & Collaborative Projects -->
-    <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Research Papers -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl lg:col-span-2">
-        <h2 class="text-2xl font-bold mb-6">Research Papers</h2>
-        <div class="space-y-4">
-          <div class="p-4 bg-purple-700 rounded-lg shadow-md hover:shadow-lg">
-            <h3 class="text-lg font-semibold mb-1">Deep Learning for NLP</h3>
-            <p class="text-purple-400">Published on: <span class="font-semibold text-purple-300">March 2023</span></p>
-            <p class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-300">123</span> | Downloads: <span class="font-semibold text-purple-300">450</span></p>
-            <a href="#" class="text-purple-300 hover:text-purple-100 mt-2 block">View Paper</a>
-          </div>
-          <div class="p-4 bg-purple-700 rounded-lg shadow-md hover:shadow-lg">
-            <h3 class="text-lg font-semibold mb-1">AI for Healthcare Analytics</h3>
-            <p class="text-purple-400">Published on: <span class="font-semibold text-purple-300">July 2022</span></p>
-            <p class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-300">97</span> | Downloads: <span class="font-semibold text-purple-300">320</span></p>
-            <a href="#" class="text-purple-300 hover:text-purple-100 mt-2 block">View Paper</a>
-          </div>
-          <div class="p-4 bg-purple-700 rounded-lg shadow-md hover:shadow-lg">
-            <h3 class="text-lg font-semibold mb-1">Ethics in AI</h3>
-            <p class="text-purple-400">Published on: <span class="font-semibold text-purple-300">October 2021</span></p>
-            <p class="text-sm text-purple-300">Citations: <span class="font-semibold text-purple-300">210</span> | Downloads: <span class="font-semibold text-purple-300">480</span></p>
-            <a href="#" class="text-purple-300 hover:text-purple-100 mt-2 block">View Paper</a>
-          </div>
-        </div>
+    <!-- Followers and Following Section -->
+    <div class="followers-following">
+      <div>
+        <h3>Followers</h3>
+        <?php if ($followers->num_rows > 0): ?>
+          <ul>
+            <?php while ($follower = $followers->fetch_assoc()): ?>
+              <li><?php echo htmlspecialchars($follower['full_name']) . " (" . htmlspecialchars($follower['username']) . ")"; ?></li>
+            <?php endwhile; ?>
+          </ul>
+        <?php else: ?>
+          <p>No followers yet.</p>
+        <?php endif; ?>
       </div>
 
-      <!-- Collaborative Projects -->
-      <div class="bg-purple-800 p-6 rounded-lg shadow-xl">
-        <h2 class="text-2xl font-bold mb-6">Collaborative Projects</h2>
-        <div class="space-y-4">
-          <div class="p-4 bg-purple-700 rounded-lg shadow-md hover:shadow-lg">
-            <h3 class="text-lg font-semibold mb-1">AI Predictive Analytics</h3>
-            <p class="text-purple-400">Project Lead: <span class="font-semibold text-purple-300">Alice Johnson</span></p>
-            <p class="text-sm text-purple-300">Milestones: <span class="font-semibold text-purple-300">3/5</span></p>
-            <a href="#" class="text-purple-300 hover:text-purple-100 mt-2 block">View Project</a>
-          </div>
-          <div class="p-4 bg-purple-700 rounded-lg shadow-md hover:shadow-lg">
-            <h3 class="text-lg font-semibold mb-1">Climate Change Research</h3>
-            <p class="text-purple-400">Project Lead: <span class="font-semibold text-purple-300">Bob Smith</span></p>
-            <p class="text-sm text-purple-300">Milestones: <span class="font-semibold text-purple-300">2/4</span></p>
-            <a href="#" class="text-purple-300 hover:text-purple-100 mt-2 block">View Project</a>
-          </div>
-        </div>
+      <div>
+        <h3>Following</h3>
+        <?php if ($following->num_rows > 0): ?>
+          <ul>
+            <?php while ($followed = $following->fetch_assoc()): ?>
+              <li><?php echo htmlspecialchars($followed['full_name']) . " (" . htmlspecialchars($followed['username']) . ")"; ?></li>
+            <?php endwhile; ?>
+          </ul>
+        <?php else: ?>
+          <p>Not following anyone.</p>
+        <?php endif; ?>
       </div>
     </div>
   </div>

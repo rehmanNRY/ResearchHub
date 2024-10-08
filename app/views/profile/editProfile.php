@@ -23,8 +23,6 @@ $affiliations = $profile->getAffiliations($user_id);
 $interests = $profile->getInterests($user_id);
 $user_data = $profile->getUserDetail($user_id);
 
-
-
 ?>
 
 <div class="min-h-screen text-white p-6 flex justify-center py-20 bg-gradient-to-r from-[#0e0a1f] via-[#2a1a4d] to-[#0e0a1f]">
