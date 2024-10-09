@@ -42,7 +42,7 @@ class Follow {
     public function getFollowers($user_id) {
         $user_id = $this->db->escape_string($user_id);
 
-        $sql = "SELECT users.user_id, users.username, users.full_name FROM followers
+        $sql = "SELECT users.user_id, users.username, users.full_name, users.profile_picture FROM followers
                 JOIN users ON followers.follower_id = users.user_id
                 WHERE followers.followed_id = '$user_id'";
 
@@ -53,7 +53,7 @@ class Follow {
     public function getFollowing($user_id) {
         $user_id = $this->db->escape_string($user_id);
 
-        $sql = "SELECT users.user_id, users.username, users.full_name FROM followers
+        $sql = "SELECT users.user_id, users.username, users.full_name, users.profile_picture FROM followers
                 JOIN users ON followers.followed_id = users.user_id
                 WHERE followers.follower_id = '$user_id'";
 

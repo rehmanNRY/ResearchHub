@@ -80,7 +80,7 @@ among researchers, academics, and students.">
           </div>
         </div>
         <a class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md hover:bg-opacity-75 mr-4" href="/researchhub_project/app/views/auth/logout.php">logout</a>
-        <a class="h-10 text-center" href="/researchhub_project/app/views/profile/userProfile.php"><img class="h-10 w-10 rounded-full object-cover scale-110 lg:mr-2 hover:ring hover:ring-purple-700" src="https://lh3.googleusercontent.com/a/ACg8ocKCAYmMcwVhDp7ZrneUw-H0m-pftFUMeA6a7fvw0j5WSDiaRtIh=s96-c" alt="user profile"></a>
+        <a class="h-10 text-center" href="/researchhub_project/app/views/profile/userProfile.php?user_id=<?= $user['user_id']?>"><img class="h-10 w-10 rounded-full object-cover scale-110 lg:mr-2 hover:ring hover:ring-purple-700" src="<?= '/researchhub_project/public/uploads/profile_pics/' . htmlspecialchars($user['profile_picture']) ?>" alt="user profile"></a>
       </div>
       <?php endif; ?>
     </nav>
