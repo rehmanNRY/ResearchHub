@@ -72,3 +72,49 @@ CREATE TABLE followers (
     FOREIGN KEY (follower_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (followed_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    title VARCHAR(255),
+    description TEXT,
+    root_folder VARCHAR(255),
+    allow_edit TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Create contributions table
+CREATE TABLE contributions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT,
+    user_id INT,
+    full_name VARCHAR(255),
+    last_contribution DATETIME,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+
+-- Task table for managing the task board
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT,
+    title VARCHAR(255),
+    description TEXT,
+    status ENUM('To Do', 'In Progress', 'Completed') DEFAULT 'To Do',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+
+-- Milestone table for tracking project milestones
+CREATE TABLE milestones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT,
+    title VARCHAR(255),
+    description TEXT,
+    due_date DATE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);

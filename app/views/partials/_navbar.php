@@ -58,6 +58,8 @@ among researchers, academics, and students.">
           <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/resource/uploadResource.php">Upload Resource</a></li>
           <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/forum/allForums.php">Forums</a></li>
           <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/forum/createForum.php">Create Forum</a></li>
+          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/projects/create_project.php">Create Project</a></li>
+          <li><a class="p-2 hover:text-purple-300 lg:px-3 relative" href="/researchhub_project/app/views/projects/projects_list.php">Projects</a></li>
         </ul>
       <?php if (!$isLoggedIn): ?>
         <a class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md hover:bg-opacity-75" href="/researchhub_project/app/views/auth/login.php">Login</a>
