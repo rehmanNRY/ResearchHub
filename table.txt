@@ -1,4 +1,4 @@
-1. users Table
+-- users Table
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(32) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-2. affiliations Table
+-- affiliations Table
 CREATE TABLE affiliations (
     affiliation_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE affiliations (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-3. research_interests Table
+-- research_interests Table
 CREATE TABLE research_interests (
     interest_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE research_interests (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-4. Resource Table
+-- Resource Table
 CREATE TABLE resources (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -39,6 +39,7 @@ CREATE TABLE resources (
     description TEXT,
     category VARCHAR(50),
     file_path VARCHAR(255) NOT NULL,
+    citations INT DEFAULT 0,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -82,7 +83,7 @@ CREATE TABLE projects (
     root_folder VARCHAR(255),
     allow_edit TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 -- Create contributions table
@@ -118,3 +119,49 @@ CREATE TABLE milestones (
     updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (project_id) REFERENCES projects(id)
 );
+
+CREATE TABLE flags (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each flag entry
+    resource_id INT NOT NULL,                   -- ID of the resource being flagged (e.g., post, comment, etc.)
+    user_id INT NOT NULL,                       -- ID of the user who flagged the content
+    reason VARCHAR(255) NOT NULL,               -- Reason for flagging the content
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending', -- Flag status (pending, approved, rejected)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp when the flag was created
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for updates
+
+    -- Foreign keys (optional if you want to link with existing user and resource tables)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (resource_id) REFERENCES resources(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE violations (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each violation
+    user_id INT NOT NULL,                       -- ID of the user who committed the violation
+    reason VARCHAR(255) NOT NULL,               -- Reason for the violation (e.g., spam, harassment, etc.)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Timestamp when the violation was logged
+
+    -- Foreign key to link with the users table
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
+-- Alter projects table
+ALTER TABLE projects
+ADD CONSTRAINT fk_projects_user_id
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE;
+
+-- Alter contributions table
+ALTER TABLE contributions
+ADD CONSTRAINT fk_contributions_user_id
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE;
+
+-- Alter tasks table
+ALTER TABLE tasks
+ADD CONSTRAINT fk_tasks_project_id
+FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE;
+
+-- Alter milestones table
+ALTER TABLE milestones
+ADD CONSTRAINT fk_milestones_project_id
+FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE;
