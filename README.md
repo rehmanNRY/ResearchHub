@@ -42,9 +42,6 @@
 ### 9. Analytics and Reporting
 - Analytics dashboards for users to track metrics related to their research contributions, including download counts, citation counts, and user engagement statistics.
 
-## 🚀 Live Demo
-- Check out the live demo of the application (link to be added once deployed).
-
 ## 🛠️ Tech Stack
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: PHP
@@ -53,6 +50,5 @@
 ## 👨‍💻 Developer
 
 **Rehman**  
-[LinkedIn](https://www.linkedin.com/in/rehman-nry)
 
-Feel free to connect with me on LinkedIn!
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/rehman-nry)!
