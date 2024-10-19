@@ -1,9 +1,4 @@
 # ResearchHub
-
-## Project Domain / Category
-**Web Application**
-
-## Abstract / Introduction
 **ResearchHub** is a web application designed to facilitate collaboration and knowledge sharing among researchers, academics, and students. It provides a platform for users to upload, share, discuss, and discover research papers, articles, datasets, and other scholarly resources.
 
 ![Website Screenshot](./public/screenshot.png)
